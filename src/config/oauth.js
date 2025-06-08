@@ -7,7 +7,7 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL:
-        "/api/auth/google/callback",
+        "https://pingtohr.ritikprojects.tech/api/auth/google/callback",
     },
     function (accessToken, refreshToken, profile, done) {
       // TODO: Find or create user in your DB
