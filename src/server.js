@@ -57,8 +57,9 @@ app.get('/api/auth/google/callback',
     session: true
   }),
   (req, res) => {
+    console.log("Authenticated user:", req.user); // ✅ should not be null
     // On success, redirect to React app
-    res.redirect('/dashboard');
+    res.redirect("/dashboard");
   }
 );
 
