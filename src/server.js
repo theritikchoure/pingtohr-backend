@@ -30,6 +30,9 @@ app.use(
     },
   })
 );
+
+app.set('trust proxy', 1); // ✅ Trust NGINX to detect https
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -62,6 +65,13 @@ app.get('/api/auth/google/callback',
     res.redirect("/dashboard");
   }
 );
+
+app.use((req, res, next) => {
+  console.log("SESSION ID:", req.sessionID);
+  console.log("SESSION:", req.session);
+  console.log("USER:", req.user);
+  next();
+});
 
 // Get logged-in user
 app.get('/api/auth/me', (req, res) => {
