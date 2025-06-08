@@ -21,12 +21,15 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   session({
+    name: "pingtohr.sid",
     secret: "hello-pingtohr",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false, // ❗ MUST be false
     cookie: {
       secure: true,
       sameSite: "none",
+      httpOnly: true, // for extra security
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
     },
   })
 );
@@ -41,7 +44,12 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://pingtohr.ritikprojects.tech",
+    credentials: true,
+  })
+);
 
 app.use("/uploads", express.static("uploads")); // to serve resume files
 
