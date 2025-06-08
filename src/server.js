@@ -12,6 +12,9 @@ const passport = require("passport");
 const mongodb = require("./config/database.js");
 const apiRoutes = require("./routes/index.route.js");
 
+
+require("./config/oauth.js");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
